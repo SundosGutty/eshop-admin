@@ -1,0 +1,28 @@
+
+.fa-solid{
+    font-weight: 900;
+    font-size: 46px;
+    color: white;
+}
+
+.box{
+    min-width: 110px;
+    max-width: 250px;   
+}
+
+.name{
+    font-size: 1rem;
+    color: white;
+}
+.number{
+    font-size: 1.7rem;
+    color: white;
+}
+
+@media (max-width: 1350px) {
+   
+
+    .box{
+      width: 100%;
+    }
+  }

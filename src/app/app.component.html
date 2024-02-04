@@ -1,0 +1,7 @@
+
+<div class="admin-wrapper">
+  <admin-sidebar *ngIf="!hideSideBar"></admin-sidebar>
+  <div [ngClass]="hideSideBar? 'admin-login' : 'admin-main'">
+    <router-outlet></router-outlet>
+  </div>
+</div>

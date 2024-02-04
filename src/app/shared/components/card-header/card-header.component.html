@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{cardContent.title}}</h5>
+      <p class="card-text">{{cardContent.description}}</p>
+      <div [ngClass]="cardContent.btnsPositionStyle">
+        <div *ngIf="cardContent.btns">
+          <ng-container *ngFor="let btn of cardContent.btns">
+            <ng-container *ngIf="btn.routeTo">
+              <a [routerLink]="btn.routeTo" type="button" class="btn" [ngClass]="btn.class">
+                <i class="fa-solid" [ngClass]="btn.icon"></i> {{ btn.btnText }}
+              </a>
+            </ng-container>
+            <ng-container *ngIf="btn.action">
+              <button (click)="btn.action()" type="button" class="btn" [ngClass]="btn.class">
+                <i class="fa-solid" [ngClass]="btn.icon"></i> {{ btn.btnText }}
+              </button>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>       
+     </div>
+</div>

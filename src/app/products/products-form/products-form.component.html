@@ -1,0 +1,9 @@
+<div class="admin-page">
+    <admin-card-header  [cardContent]="cardContent"></admin-card-header>
+   <div class="mt-4">
+     <admin-form-base-template [imageDisplay]="imageDisplay" [formGroup]="productForm" [formFields]="formFields" (uploadImage)="onImageUpload($event)"></admin-form-base-template>
+   </div>
+  </div>
+  
+   <admin-toast-message [message]="messageState" *ngIf="messageState" (closeModal)="closeModal()"></admin-toast-message>
+

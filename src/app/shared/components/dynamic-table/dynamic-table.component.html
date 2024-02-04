@@ -1,0 +1,64 @@
+<table class="table table-hover ms-2">
+  <thead>
+    <th *ngFor="let header of columnHeaders" scope="col" (click)="sortData(header)" class="pointer">
+    {{ header }}
+    <span *ngIf="header === 'Name'"><i class="fa-solid fa-sort"></i></span>
+    <span *ngIf="header === 'Price'"><i class="fa-solid fa-sort"></i></span>
+    </th>
+      <th scope="col">Actions</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of tableData">
+      <ng-container *ngFor="let header of columnHeaders">
+        <td *ngIf="header !== 'Color' && header !== 'User' && header !== 'Total Price' && header !== 'Status' && header !==  'Date Ordered'&&  header !== 'Icon' && header !== 'Actions' && header !== 'Image' && header !== 'Stock' && header !== 'Category' && header !== 'Date Created' && header !== 'Is Admin' && header !== 'Country'; else specialCell">
+          {{ row[header.toLowerCase()] }}
+        </td>
+        <ng-template #specialCell>
+          <td>
+            <ng-container *ngIf="header === 'Icon'">
+              <i [ngClass]="'fa-solid' + ' ' + 'fa-' + row[header.toLowerCase()]"></i>
+            </ng-container>
+            <ng-container *ngIf="header === 'Color'">
+              <div class="circle" [style.background-color]="row[header.toLowerCase()]"></div>
+            </ng-container>
+            <ng-container *ngIf="header === 'Image'">
+              <img [src]="row.image" alt="Product Image" style="width: 50px; height: 50px;">
+            </ng-container>
+            <ng-container *ngIf="header === 'Stock'">
+              {{ row.countInStock }}
+            </ng-container>
+            <ng-container *ngIf="header === 'Category'">
+              {{ row.category.name }}
+            </ng-container>
+            <ng-container *ngIf="header === 'Date Created' || header === 'Date Ordered'">
+              {{ (row.dateCreated?  row.dateCreated : row.dateOrdered) | date: 'short' }}
+            </ng-container>
+            <ng-container *ngIf="header === 'Is Admin'">
+              <i [ngClass]=" row.isAdmin ? 'fa-solid fa-check' : 'fa-solid fa-x'"></i>
+            </ng-container>
+            <ng-container *ngIf="header === 'Country'">
+              {{ row.country | countryName }}
+            </ng-container>
+            <ng-container *ngIf="header === 'User'">
+              {{ row.user?.name ?   row.user.name : '-'}}
+            </ng-container>
+            <ng-container *ngIf="header === 'Total Price'">
+              {{ row.totalPrice}}
+            </ng-container>
+            <ng-container *ngIf="header === 'Status'">
+              <div class="status p-1 rounded text-center"
+              [style.backgroundColor]="orderStatus[+row.status].color"
+            > {{orderStatus[+row.status].label}}</div>
+            </ng-container>
+          </td>
+        </ng-template>
+      </ng-container>
+      <td>
+        <button *ngFor="let btn of actionButtons" (click)="btn.action(row.id)" class="btn" [class]="btn.class">
+          <i *ngIf="btn.icon" [ngClass]="'fa-solid' + ' ' + 'fa-' + btn.icon"></i>
+          {{ btn.text }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

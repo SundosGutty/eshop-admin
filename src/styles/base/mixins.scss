@@ -1,0 +1,25 @@
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+$circle-size: 100px;
+
+@mixin circle($size: $circle-size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+}
+
+.circle {
+  @include circle(30px);
+
+  @media (max-width: 768px) {
+    @include circle(30px); 
+  }
+
+  @media (max-width: 480px) {
+    @include circle(10px); 
+  }
+}

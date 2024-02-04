@@ -1,0 +1,21 @@
+
+.card{
+    padding: 5px;
+    h5{
+        font-size: 0.70rem;
+        font-weight: bold;
+        position: absolute;
+        top: -11px;
+        left: -1px;
+        background-color: #d6d6d6;
+        padding: 3px;
+        border-radius: 2px;
+    }
+    h6{
+        font-size: 0.85rem;
+        text-decoration: underline;
+    }
+    .total{
+        justify-content: flex-end;
+    } 
+}

@@ -1,0 +1,16 @@
+<div class="modal"  tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{content.title}}</h1>
+          <button type="button" class="btn-close" (click)="userResponse(false)"></button>
+        </div>
+        <div class="modal-body" *ngIf="content.description">
+          {{content.description}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" [ngClass]="btn.class"  *ngFor="let btn of content.buttons" (click)="userResponse(btn.response)">{{btn.title}}</button>
+        </div>
+      </div>
+    </div>
+  </div>

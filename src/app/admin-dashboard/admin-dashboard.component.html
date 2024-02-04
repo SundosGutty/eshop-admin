@@ -1,0 +1,54 @@
+<div class="admin-page" *ngIf="statistics.length">
+    <div class="card p-4">
+        <h5 class="card-title">Dashboard</h5>
+        <p class="card-text">Latest Updates</p>
+      <div class="card-body">
+        <div class="d-flex flex-wrap gap-4">
+          <div class="col-md-3 box">
+            <div class="card d-orders">
+              <div class="card-body d-item">
+                <div>
+                    <i class="fa-solid fa-cart-shopping"></i><br />
+                    <span class="name">Orders</span>
+                </div>
+                <span class="number">{{ statistics[0] }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 box">
+            <div class="card d-products">
+              <div class="card-body d-item">
+                <div>
+                    <i class="fa-solid fa-briefcase"></i><br />
+                    <span class="name">Products</span>
+                </div>
+                <span class="number">{{ statistics[1] }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 box">
+            <div class="card d-users">
+              <div class="card-body d-item">
+                <div>
+                    <i class="fa-solid fa-users"></i><br />
+                    <span class="name">Users</span>
+                </div>
+                <span class="number">{{ statistics[2] }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 box">
+            <div class="card d-totalsales">
+              <div class="card-body d-item">
+                <div>
+                    <i class="fa-solid fa-dollar-sign"></i><br />
+                    <span class="name">TotalSales</span>
+                </div>
+                <span class="number">{{ statistics[3] | currency }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

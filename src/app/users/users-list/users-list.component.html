@@ -1,0 +1,14 @@
+<div class="admin-page">
+    <admin-card-header [cardContent]="cardContent"></admin-card-header>
+    <div class="mt-4">
+    <app-dynamic-table
+    [tableData]="users"
+    [columnHeaders]="['Name', 'Email', 'Is Admin', 'Country']"
+    [actionButtons]="tableBtns"
+    >
+  </app-dynamic-table>
+  </div>
+  </div>
+  
+  <admin-toast-message [message]="messageState" *ngIf="messageState" (closeModal)="closeModal()"></admin-toast-message>
+  <admin-confirm-dialog [content]="dialogContent" *ngIf="dialogContent " (userResponded)="shouldDelete($event)"></admin-confirm-dialog>

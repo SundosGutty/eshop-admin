@@ -1,0 +1,63 @@
+<form [formGroup]="formGroup" class="row gap-2">
+    <div *ngFor="let field of formFields" class="col-md-{{field.colSpan}}">
+      <label class="form-label">{{ field.label }}</label>
+      <ng-container *ngIf="field.type === 'text' || field.type === 'number' ||  field.type === 'password' || field.type === 'email' || field.type === 'phone'">
+        <input
+          [formControlName]="field.controlName"
+          [id]="field.controlName"
+          [type]="field.type"
+          class="form-control"
+          [placeholder]="field.placeholder"
+          [class.error-border]="getControlError(field.controlName) && formGroup.get(field.controlName).touched"
+        />
+        <div *ngIf="getControlError(field.controlName) && this.formGroup.get(field.controlName).touched" class="text-danger">
+          {{ getControlError(field.controlName) }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="field.type === 'select'">
+        <select [formControlName]="field.controlName" [id]="field.controlName" class="form-select" [class.error-border]="getControlError(field.controlName) && formGroup.get(field.controlName).touched">
+          <option *ngFor="let option of field.options" [value]="option.value">{{ option.label }}</option>
+        </select>
+        <div *ngIf="getControlError(field.controlName) && this.formGroup.get(field.controlName).touched" class="text-danger">
+          {{ getControlError(field.controlName) }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="field.type === 'toggle'">
+        <label class="switch">
+            <input [formControlName]="field.controlName" 
+            [id]="field.controlName" type="checkbox" 
+            [checked]="isToggled" (change)="onToggle($event)"  checked>
+            <span class="slider round"></span>
+          </label>
+          <div *ngIf="getControlError(field.controlName) && this.formGroup.get(field.controlName).touched" class="text-danger">
+            {{ getControlError(field.controlName) }}
+          </div>
+      </ng-container>
+      <ng-container  *ngIf="field.type === 'textarea'">
+          <textarea class="textarea"  [formControlName]="field.controlName"[id]="field.controlName" [class.error-border]="getControlError(field.controlName) && formGroup.get(field.controlName).touched"></textarea>
+          <div *ngIf="getControlError(field.controlName) && this.formGroup.get(field.controlName).touched" class="text-danger">
+            {{ getControlError(field.controlName) }}
+          </div>
+      </ng-container>
+      <ng-container *ngIf="field.type === 'color'">
+          <input [class.error-border]="getControlError(field.controlName) && formGroup.get(field.controlName).touched" class="form-control" [formControlName]="field.controlName" [id]="field.controlName" [placeholder]="field.placeholder" [type]="field.type">
+          <div *ngIf="getControlError(field.controlName) && this.formGroup.get(field.controlName).touched" class="text-danger">
+            {{ getControlError(field.controlName) }}
+          </div>
+      </ng-container>
+      <ng-container *ngIf="field.type === 'file'">
+        <input
+          type="file"
+          class="p-inputtext"
+          accept="image/*"
+          (change)="onImageUpload($event)"
+        />
+        <div class="p-col-2 p-mt-2 p-pl-0" *ngIf="imageDisplay">
+          <img style="width: 100%" [src]="imageDisplay" alt="Uploaded Image" />
+        </div>
+        <div *ngIf="getControlError(field.controlName) && this.formGroup.get(field.controlName).touched" class="text-danger">
+          {{ getControlError(field.controlName) }}
+        </div>
+      </ng-container>
+    </div>
+  </form>
